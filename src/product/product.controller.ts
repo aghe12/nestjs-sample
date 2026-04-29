@@ -23,7 +23,7 @@ export class ProductController {
   }
 
   @Patch(':id')
-  update(@Query('id') id: string, @Body() updateProductDto: UpdateProductDto) { //Query: extract the id from the query string 
+  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) { 
     return this.productService.update(+id, updateProductDto);
   }
 
