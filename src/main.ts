@@ -9,9 +9,10 @@ async function bootstrap() {
   app.disable('x-powered-by'); //disables the header
   
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
+    whitelist: true, //removes extra fields we dont expect
+    forbidNonWhitelisted: true, //reject requests with unkown field
+    transform: true, //convert strings to numbers
+
     exceptionFactory: (errors) => {
       // Log validation errors for debugging
       console.log('Validation Error Details:', {
@@ -26,13 +27,13 @@ async function bootstrap() {
       
       // Create custom error response
       const customErrors = errors.map(error => ({
-        field: error.property,
-        message: Object.values(error.constraints || {}).join(', '),
-        value: error.value
+        field: error.property, // Which field failed validation
+        message: Object.values(error.constraints || {}).join(', '), // Error message
+        value: error.value // The value that failed validation
       }));
       
       return new BadRequestException({
-        success: false,
+        success: false, // Easy for frontend to check if request succeeded
         message: 'Validation failed',
         errors: customErrors,
         timestamp: new Date().toISOString()
