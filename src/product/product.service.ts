@@ -20,15 +20,15 @@ export class ProductService {
     return newProduct;
   } 
 
-  findAll(): Product[] {
+  findAll(): ProductDto[] {
     return ProductDB;
   }
 
-  findOne(id: number): Product | undefined {
+  findOne(id: number): ProductDto | undefined {
     return ProductDB.find(p => p.id === id);
   }
 
-  update(id: number, updateProductDto: UpdateProductDto): Product | undefined {
+  update(id: number, updateProductDto: UpdateProductDto): ProductDto | undefined {
     const product=ProductDB.find(p=>p.id===id);
     if(!product){
       return undefined;
@@ -37,7 +37,7 @@ export class ProductService {
     return product;
   }
 
-  remove(id: number): Product | undefined {
+  remove(id: number): ProductDto | undefined {
     const product=ProductDB.find(p=>p.id===id);
     if(!product){
       return undefined;

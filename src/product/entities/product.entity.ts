@@ -1,4 +1,6 @@
 
+import { ProductDto } from '../dto/product.dto';
+
 export interface IProduct {
     id: number;
     name: string;
@@ -23,9 +25,7 @@ export class Product implements IProduct {
     }
 }
 
-export const ProductDB: Array<Product> = [
+export const ProductDB: Array<ProductDto> = [
     {id: 1, name: 'Product 1', description: "Description 1", price: 100, isDiscounted: false},
     {id: 2, name: 'Product 2', description: "Description 2", price: 100, isDiscounted: false}
 ]
-
-

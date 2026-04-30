@@ -20,15 +20,15 @@ export class UserService {
     return newUser;
   }
 
-  findAll(): User[] {
+  findAll(): UserDto[] {
     return UserDB;
   }
 
-  findOne(id: number): User | undefined {
+  findOne(id: number): UserDto | undefined {
     return UserDB.find(u => u.id === id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): User | undefined {
+  update(id: number, updateUserDto: UpdateUserDto): UserDto | undefined {
     const user = UserDB.find(u => u.id === id);
     if (!user) {
       return undefined;
@@ -37,7 +37,7 @@ export class UserService {
     return user;
   }
 
-  remove(id: number): User | undefined {
+  remove(id: number): UserDto | undefined {
     const user = UserDB.find(u => u.id === id);
     if (!user) {
       return undefined;

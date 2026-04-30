@@ -1,3 +1,5 @@
+import { UserDto } from '../dto/user.dto';
+
 export interface IUser {
     id: number;
     name: string;
@@ -22,7 +24,7 @@ export class User implements IUser {
     }
 }
 
-export const UserDB: Array<User> = [
+export const UserDB: Array<UserDto> = [
     {id: 1, name: 'User 1', email: "user1@example.com", age: 25, isActive: true},
     {id: 2, name: 'User 2', email: "user2@example.com", age: 30, isActive: true}
 ]
