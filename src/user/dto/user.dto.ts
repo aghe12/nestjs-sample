@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNumber, IsBoolean, IsString, IsNotEmpty, Min, Max } from 'class-validator';
-import { IsUniqueUserEmail, IsValidAge } from '../../common/validators/decorators';
 
 export class UserDto{
     @ApiProperty({description: 'The unique identifier of the user', example: 1})
@@ -15,12 +14,12 @@ export class UserDto{
     @ApiProperty({description: 'The email of the user', example: 'john@example.com'})
     @IsNotEmpty()
     @IsEmail()
-    @IsUniqueUserEmail({ message: 'Email must be unique' })
     email!: string;
 
     @ApiProperty({description: 'The age of the user', example: 25})
     @IsNumber()
-    @IsValidAge({ message: 'Age must be between 13 and 120 years' })
+    @Min(0)
+    @Max(120)
     age!: number;
 
     @ApiProperty({description: 'Whether the user is active', example: true})

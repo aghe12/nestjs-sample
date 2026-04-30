@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength } from "class-validator";
-import { IsUniqueProductName, IsValidPrice } from "../../common/validators/decorators";
 
 export class ProductDto{
 
@@ -11,7 +10,6 @@ export class ProductDto{
     @IsNotEmpty()
     @IsString()
     @MaxLength(100)
-    @IsUniqueProductName({ message: 'Product name must be unique' })
     @ApiProperty({description: 'the name of the product', example:'Product Name'})
     name!: string;
     
@@ -23,7 +21,7 @@ export class ProductDto{
     
     @IsNotEmpty()
     @IsNumber()
-    @IsValidPrice({ message: 'Price must be between $0.01 and $99,999.99' })
+    @IsPositive()
     @ApiProperty({description: 'the price of the product', example:100})
     price!: number;
     
